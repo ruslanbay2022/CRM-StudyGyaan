@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "head.html" %}
+{% load crispy_forms_tags %}
+<body class="bg-gradient-primary">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-xl-10 col-lg-12 col-md-9">
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h2 text-gray-900 mb-4">Create an Account</h1>
+                                </div>
+                                <form class="user" method="post">
+                                    {% csrf_token %}
+                                    {{ form | crispy }}
+                                    <button class="btn btn-primary btn-user btn-block">Register</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include "footer-scripts.html" %}
+</body>
+</html>

@@ -1,0 +1,6 @@
+GIT - git@github.com:ruslanbay2022/CRM-StudyGyaan.git
+Кураторов для детей
+Отображение меню в зависимости от доступа
+Выгрузка в файлы списка детей 
+
+Урок 16 - https://www.youtube.com/watch?v=E6LxUleoloU&list=PLSPMgrv4IuJ4WLURdlzKNx4sgsyqW8d5q&index=16

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row user-wrap">
+	<div class="col-xl-12 col-lg-12">
+		<div class="card shadow">
+			<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+				<h6 class="m-0 font-weight-bold text-primary">Update Editor: {{ editor.username }}</h6>
+			</div>
+			<div class="card-body">
+				<form class="user" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					{{ user_form | crispy }}
+					{{ profile_form | crispy  }}
+					<button type="submit" class="btn btn-success">Update</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}

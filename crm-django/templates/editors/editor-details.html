@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="row user-wrap">
+	<div class="col-xl-3 col-lg-3">
+		<div class="card shadow">
+			<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+				<h6 class="m-0 font-weight-bold text-primary">Editor Photo</h6>
+			</div>
+			<div class="card-body">
+				<div class="avatar">
+					 {% if editor.profile.avatar %}
+					<img src="{{editor.profile.avatar.url}}" class="rounded">
+					{% else %}
+					<img src="{% static 'img/undraw_profile.svg' %}" class="rounded">
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xl-9 col-lg-9">
+		<div class="card shadow">
+			<!-- Card Header - Dropdown -->
+			<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+				<h6 class="m-0 font-weight-bold text-primary">Editor:</h6>
+			</div>
+			<!-- Card Body -->
+			<div class="card-body">
+				<div class="user-info">
+					<table class="table table-bordered dataTable">
+						<tr>
+							<th>Login</th>
+							<td>{{ editor.username }}</td>
+						</tr>
+						<tr>
+							<th>First Name</th>
+							<td>{{ editor.first_name }}</td>
+						</tr>
+						<tr>
+							<th>Last Name</th>
+							<td>{{ editor.last_name }}</td>
+						</tr>
+						<tr>
+							<th>Email</th>
+							<td>{{ editor.email }}</td>
+						</tr>
+						<tr>
+							<th>Superuser</th>
+							<td>{{ editor.is_superuser }}</td>
+						</tr>
+						<tr>
+							<th>Staff Status</th>
+							<td>{{ editor.is_staff }}</td>
+						</tr>
+						<tr>
+							<th>Date Joined</th>
+							<td>{{ editor.date_joined }}</td>
+						</tr>
+						<tr>
+							<th>Last Login Date</th>
+							<td>{{ editor.last_login }}</td>
+						</tr>
+						<tr>
+							<th>About</th>
+							<td>{{ editor.profile.bio|linebreaks }}</td>
+						</tr>
+						<tr>
+							<th>Phone</th>
+							<td>{{ editor.profile.phone }}</td>
+						</tr>
+						<tr>
+							<th>Birth Day</th>
+							<td>{{ editor.profile.birth_date }}</td>
+						</tr>
+						<tr>
+							<th>Role</th>
+							<td>
+								{% for group in editor.groups.all %}
+									<span class="group-name">{{group}}</span>
+								{% endfor %}
+							</td>
+						</tr>
+					</table>
+					{% if not editor.is_superuser %}
+					<div class="user-edit-btn-wrap">
+						<a href="{% url 'UserUpdateView' pk=editor.pk  %}" class="btn btn-info btn-icon-split">
+							<span class="icon text-white-50"><i class="fas fa-user-edit"></i></span>
+							<span class="text">Edit</span>
+						</a>
+						<a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#EditorDeleteModal">
+                           	<span class="icon text-white-50"><i class="fas fa-trash"></i></span>
+							<span class="text">Remove</span>
+						</a>
+					</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="EditorDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Ready to Delete?</h5>
+				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body">Select "Delete" below if you are ready to Delete current person.</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+				<form method="post" action="{% url 'UserDeleteView'  pk=editor.pk  %}">
+					{% csrf_token %}
+    				<button class="btn btn-primary" type="submit" >Delete</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

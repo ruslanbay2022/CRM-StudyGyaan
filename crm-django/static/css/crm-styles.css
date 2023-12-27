@@ -1,0 +1,132 @@
+.bg-login-image {
+    background: url(../img/crm-logo.png);
+    background-position: center;
+    background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.user .btn-user {
+    font-size: .8rem;
+    border-radius: 10rem;
+    padding: .75rem 1rem;
+}
+
+.user .form-control {
+    border-radius: 10rem;
+}
+
+.user-info table td {
+	vertical-align: middle;
+}
+
+.min-height-50vh {
+	min-height: 50vh;
+}
+
+.flex {
+	display: flex;
+}
+
+.user-wrap .col-xl-3 .card, .user-wrap .col-xl-9 .card {
+	height: 100%;
+}
+
+.user-wrap .col-xl-3 .avatar {
+	display:flex;
+	align-items:center;
+	height: 100%;
+	width:100%;
+}
+
+.user-edit-btn-wrap {
+	display:flex;
+	align-items:center;
+	justify-content: end;
+}
+
+.avatar img {
+	max-width: 100%;
+}
+
+.user .textarea {
+    border-radius: 10px;
+}
+
+input[type='file'] {
+	border-radius: 10px!important;
+	height: calc(1.5em + 0.75rem + 8px)!important;
+}
+
+.table th.child-photo {
+	width:100px!important;
+	max-width:100px!important;
+}
+
+.table td.child-photo {
+	vertical-align: center;
+	text-align: center;
+}
+
+.table td.child-photo img {
+	height:80px!important;
+	width:auto!important;
+}
+
+.table th.child-actions {
+	width:150px!important;
+	max-width:150px!important;
+}
+
+.table td.child-actions a {
+	width: 100%;
+}
+
+.table td.child-actions a:not(:last-child){
+	margin-bottom: 4px;
+}
+
+td.child-actions .btn-icon-split {
+	justify-content: start;
+}
+
+.btn-icon-split .icon {
+	min-width: 48px;
+}
+
+.child-card .form-select {
+    display: inline-block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem 1.75rem .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #6e707e;
+    vertical-align: middle;
+    background: #fff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%235a5c69' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") right .75rem center/8px 10px no-repeat;
+    border: 1px solid #d1d3e2;
+    border-radius: 10rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.child-card .form-select:focus {
+    color: #6e707e;
+    background-color: #fff;
+    border-color: #bac8f3;
+    outline: 0;
+    box-shadow: 0 0 0 .2rem rgba(78,115,223,.25);
+}
+
+.user-edit-btn-wrap {
+	margin-top:20px;
+}
+
+.user-edit-btn-wrap a + a {
+	margin-left:20px;
+}
+
+.group-name:not(:last-child):after {
+	content: ', ';
+}

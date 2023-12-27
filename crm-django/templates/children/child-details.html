@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="row user-wrap">
+	<div class="col-xl-3 col-lg-3">
+		<div class="card shadow">
+			<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+				<h6 class="m-0 font-weight-bold text-primary">Child Photo</h6>
+			</div>
+			<div class="card-body">
+				<div class="avatar">
+					 {% if child.avatar %}
+					<img src="{{child.avatar.url}}" class="rounded">
+					{% else %}
+					<img src="{% static 'img/undraw_profile.svg' %}" class="rounded">
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xl-9 col-lg-9">
+		<div class="card shadow">
+			<!-- Card Header - Dropdown -->
+			<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+				<h6 class="m-0 font-weight-bold text-primary">Child:</h6>
+			</div>
+			<!-- Card Body -->
+			<div class="card-body">
+				<div class="user-info">
+					<table class="table table-bordered dataTable">
+						<tr>
+							<th>Name</th>
+							<td>{{ child.name }}</td>
+						</tr>
+						<tr>
+							<th>Middlename</th>
+							<td>{{ child.middlename }}</td>
+						</tr>
+						<tr>
+							<th>Surname</th>
+							<td>{{ child.surname }}</td>
+						</tr>
+						<tr>
+							<th>Gender</th>
+							<td>{{ child.gender }}</td>
+						</tr>
+						<tr>
+							<th>Birth Day</th>
+							<td>{{ child.birth_date }}</td>
+						</tr>
+						<tr>
+							<th>Bio</th>
+							<td>{{ child.bio|linebreaks }}</td>
+						</tr>
+						<tr>
+							<th>Addition Date</th>
+							<td>{{ child.addition_date }}</td>
+						</tr>
+					</table>
+					<div class="user-edit-btn-wrap">
+						<a href="{% url 'ChildUpdateView' pk=child.pk  %}" class="btn btn-info btn-icon-split">
+							<span class="icon text-white-50"><i class="fas fa-user-edit"></i></span>
+							<span class="text">Edit Child</span>
+						</a>
+						<a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#ChildDeleteModal">
+                           	<span class="icon text-white-50"><i class="fas fa-trash"></i></span>
+							<span class="text">Remove Child</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="ChildDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Ready to Delete?</h5>
+				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body">Select "Delete" below if you are ready to Delete current person.</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+				<form method="post" action="{% url 'ChildDeleteView'  pk=child.pk  %}">
+					{% csrf_token %}
+    				<button class="btn btn-primary" type="submit" >Delete</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

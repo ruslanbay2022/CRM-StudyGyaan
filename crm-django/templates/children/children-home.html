@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- DataTales Childs -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            {% if children %}
+            <table class="table table-bordered children-table" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th class="child-photo">Photo</th>
+                        <th>Name</th>
+                        <th>Middlename</th>
+                        <th>Surname</th>
+                        <th>Year of birth (Age)</th>
+                        <th>Addition Date</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Photo</th>
+                        <th>Name</th>
+                        <th>Middlename</th>
+                        <th>Surname</th>
+                        <th>Year of birth (Age)</th>
+                        <th>Addition Date</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                      {% for child in children %}
+                            <tr>
+                                <td class="child-photo">
+                                    {% if child.avatar %}
+                                    <img src="{{child.avatar.url}}" class="rounded" height="80px">
+                                    {% else %}
+                                    <img src="{% static 'img/undraw_profile.svg' %}" class="rounded" height="80px">
+                                    {% endif %}
+                                </td>
+                                <td><a href="{% url 'ChildDetailsView' pk=child.pk %}">{{child.name}}</a></td>
+                                <td><a href="{% url 'ChildDetailsView' pk=child.pk %}">{{child.middlename}}</a></td>
+                                <td><a href="{% url 'ChildDetailsView' pk=child.pk %}">{{child.surname}}</a></td>
+                                <td>{{child.birth_date}}</td>
+                                <td>{{child.addition_date}}</td>
+                            </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                <h5 class="m-0 font-weight-bold text-primary">No data available yet</h5>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
